@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
+const PASSWORD_LENGTH = 5;
+
 class PasswordColumnInput extends Component {
   handleChange = (event) => {
     this.props.onChange(this.props.column, event.target.value);
@@ -32,28 +34,20 @@ class PasswordColumnsInput extends Component {
   }
 
   render() {
+    let inputs = [];
+
+    for (let i = 0; i < PASSWORD_LENGTH; i++) {
+      inputs.push(
+        <PasswordColumnInput
+          column={i+1}
+          onChange={this.handleColumnChange}
+          value={this.props.columns[i]} />
+      );
+    }
+
     return (
       <fieldset>
-        <PasswordColumnInput
-          column="1"
-          onChange={this.handleColumnChange}
-          value={this.props.columns[0]} />
-        <PasswordColumnInput
-          column="2"
-          onChange={this.handleColumnChange}
-          value={this.props.columns[1]} />
-        <PasswordColumnInput
-          column="3"
-          onChange={this.handleColumnChange}
-          value={this.props.columns[2]} />
-        <PasswordColumnInput
-          column="4"
-          onChange={this.handleColumnChange}
-          value={this.props.columns[3]} />
-        <PasswordColumnInput
-          column="5"
-          onChange={this.handleColumnChange}
-          value={this.props.columns[4]} />
+        {inputs}
       </fieldset>
     );
   }
