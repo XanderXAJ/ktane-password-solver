@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 const PASSWORD_LENGTH = 5;
+const PASSWORDS = ["about", "after", "again", "below", "could", "every", "first", "found", "great", "house", "large", "learn", "never", "other", "place", "plant", "point", "right", "small", "sound", "spell", "still", "study", "their", "there", "these", "thing", "think", "three", "water", "where", "which", "world", "would", "write"];
 
 class PasswordColumnInput extends Component {
   handleChange = (event) => {
@@ -54,8 +55,6 @@ class PasswordColumnsInput extends Component {
 }
 
 
-
-const PASSWORDS = ["about", "after", "again", "below", "could", "every", "first", "found", "great", "house", "large", "learn", "never", "other", "place", "plant", "point", "right", "small", "sound", "spell", "still", "study", "their", "there", "these", "thing", "think", "three", "water", "where", "which", "world", "would", "write"];
 
 function getPasswordColumnsRegexp(columns) {
   // Make empty columns match any character, filled-in columns match entered characters
