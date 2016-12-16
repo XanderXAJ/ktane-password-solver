@@ -68,10 +68,6 @@ function filterValidPasswords(columns, passwords) {
 }
 
 class ValidPasswordList extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     let validPasswords = filterValidPasswords(this.props.columns, PASSWORDS);
 
