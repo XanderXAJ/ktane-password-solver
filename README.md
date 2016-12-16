@@ -12,3 +12,4 @@ This small web application is designed to help you not explode when a password m
 - Reset button that clears all fields and puts focus on the first
 - Keyboard shortcuts for easy navigation (e.g. up/down to switch character, Alt+Backspace to reset)
 - Styling
+- Highlighting when there is only one word/no words
