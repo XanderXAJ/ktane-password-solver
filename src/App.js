@@ -16,7 +16,6 @@ class PasswordColumnInput extends Component {
           Column {this.props.column}:&nbsp;
           <input
             type="text"
-            maxLength="6"
             value={this.props.value}
             onChange={this.handleChange} />
         </label>
