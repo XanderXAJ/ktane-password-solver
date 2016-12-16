@@ -35,14 +35,15 @@ class PasswordColumnsInput extends Component {
   }
 
   render() {
+    const columns = this.props.columns;
     let inputs = [];
 
-    for (let i = 0; i < PASSWORD_LENGTH; i++) {
+    for (let i = 0; i < columns.length; i++) {
       inputs.push(
         <PasswordColumnInput
           column={i+1}
           onChange={this.handleColumnChange}
-          value={this.props.columns[i]} />
+          value={columns[i]} />
       );
     }
 
