@@ -88,7 +88,12 @@ class ValidPasswordList extends Component {
 class PasswordSolver extends Component {
   constructor(props) {
     super(props);
-    this.state = {columns: ['', '', '', '', '']};
+
+    let columns = [];
+    for (let i = 0; i < PASSWORD_LENGTH; i++) {
+      columns.push('');
+    }
+    this.state = {columns};
   }
 
   handleChange = (columns) => {
