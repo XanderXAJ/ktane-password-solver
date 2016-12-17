@@ -13,7 +13,7 @@ class PasswordColumnInput extends Component {
     return (
       <div>
         <label>
-          Column {this.props.column}:&nbsp;
+          {this.props.name}:&nbsp;
           <input
             type="text"
             value={this.props.value}
@@ -27,9 +27,9 @@ class PasswordColumnInput extends Component {
 
 
 class PasswordColumnsInput extends Component {
-  handleColumnChange = (column, value) => {
+  handleColumnChange = (index, value) => {
     let columns = this.props.columns;
-    columns[column - 1] = value;
+    columns[index] = value;
     this.props.onChange(columns);
   }
 
@@ -40,8 +40,9 @@ class PasswordColumnsInput extends Component {
     for (let i = 0; i < columns.length; i++) {
       inputs.push(
         <PasswordColumnInput
-          column={i+1}
+          index={i}
           key={i}
+          name={'Column ' + (i + 1)}
           onChange={this.handleColumnChange}
           value={columns[i]} />
       );
