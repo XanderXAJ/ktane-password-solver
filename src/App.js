@@ -13,6 +13,10 @@ class PasswordColumnInput extends Component {
     this.input && this.input.focus();
   }
 
+  handleKeyDown = (event) => {
+    this.props.onKeyDown && this.props.onKeyDown(this.props.index, event);
+  }
+
   render() {
     return (
       <div>
@@ -22,7 +26,8 @@ class PasswordColumnInput extends Component {
             ref={ (input) => { this.input = input; } }
             type="text"
             value={this.props.value}
-            onChange={this.handleChange} />
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown} />
         </label>
       </div>
     );
@@ -50,6 +55,25 @@ class PasswordColumnsInput extends Component {
     this.props.onChange(columns);
   }
 
+  wrapColumnIndex(index) {
+    if (index < 0) return this.columnComponents.length - 1;
+    if (index >= this.columnComponents.length) return 0;
+    return index;
+  }
+
+  handleColumnKeyDown = (index, event) => {
+    switch (event.key) {
+      case "ArrowUp":
+        this.columnComponents[this.wrapColumnIndex(index - 1)].focus();
+        break;
+      case "ArrowDown":
+        this.columnComponents[this.wrapColumnIndex(index + 1)].focus();
+        break;
+      default:
+        // Do nothing
+    }
+  }
+
   render() {
     const columns = this.props.columns;
     let inputs = [];
@@ -62,6 +86,7 @@ class PasswordColumnsInput extends Component {
           name={'Column ' + (i + 1)}
           ref={ (component) => { this.columnComponents[i] = component; } }
           onChange={this.handleColumnChange}
+          onKeyDown={this.handleColumnKeyDown}
           value={columns[i]} />
       );
     }
