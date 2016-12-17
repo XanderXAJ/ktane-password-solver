@@ -9,6 +9,10 @@ class PasswordColumnInput extends Component {
     this.props.onChange && this.props.onChange(this.props.index, event.target.value);
   }
 
+  focus = () => {
+    this.input && this.input.focus();
+  }
+
   render() {
     return (
       <div>
@@ -31,6 +35,13 @@ class PasswordColumnsInput extends Component {
   constructor(props) {
     super(props);
     this.columnComponents = [];
+  }
+
+  componentDidMount() {
+    // Automatically put focus on the first input
+    if (this.columnComponents.length > 0) {
+      this.columnComponents[0] && this.columnComponents[0].focus();
+    }
   }
 
   handleColumnChange = (index, value) => {
