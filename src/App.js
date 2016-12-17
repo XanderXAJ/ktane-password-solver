@@ -9,15 +9,25 @@ class PasswordColumnInput extends Component {
     this.props.onChange && this.props.onChange(this.props.index, event.target.value);
   }
 
+  focus = () => {
+    this.input && this.input.focus();
+  }
+
+  handleKeyDown = (event) => {
+    this.props.onKeyDown && this.props.onKeyDown(this.props.index, event);
+  }
+
   render() {
     return (
       <div>
         <label>
           {this.props.name}:&nbsp;
           <input
+            ref={ (input) => { this.input = input; } }
             type="text"
             value={this.props.value}
-            onChange={this.handleChange} />
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown} />
         </label>
       </div>
     );
@@ -27,10 +37,41 @@ class PasswordColumnInput extends Component {
 
 
 class PasswordColumnsInput extends Component {
+  constructor(props) {
+    super(props);
+    this.columnComponents = [];
+  }
+
+  componentDidMount() {
+    // Automatically put focus on the first input
+    if (this.columnComponents.length > 0) {
+      this.columnComponents[0] && this.columnComponents[0].focus();
+    }
+  }
+
   handleColumnChange = (index, value) => {
     let columns = this.props.columns;
     columns[index] = value;
     this.props.onChange(columns);
+  }
+
+  wrapColumnIndex(index) {
+    if (index < 0) return this.columnComponents.length - 1;
+    if (index >= this.columnComponents.length) return 0;
+    return index;
+  }
+
+  handleColumnKeyDown = (index, event) => {
+    switch (event.key) {
+      case "ArrowUp":
+        this.columnComponents[this.wrapColumnIndex(index - 1)].focus();
+        break;
+      case "ArrowDown":
+        this.columnComponents[this.wrapColumnIndex(index + 1)].focus();
+        break;
+      default:
+        // Do nothing
+    }
   }
 
   render() {
@@ -43,7 +84,9 @@ class PasswordColumnsInput extends Component {
           index={i}
           key={i}
           name={'Column ' + (i + 1)}
+          ref={ (component) => { this.columnComponents[i] = component; } }
           onChange={this.handleColumnChange}
+          onKeyDown={this.handleColumnKeyDown}
           value={columns[i]} />
       );
     }
