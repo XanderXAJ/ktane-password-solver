@@ -6,7 +6,7 @@ const PASSWORDS = ["about", "after", "again", "below", "could", "every", "first"
 
 class PasswordColumnInput extends Component {
   handleChange = (event) => {
-    this.props.onChange(this.props.column, event.target.value);
+    this.props.onChange && this.props.onChange(this.props.index, event.target.value);
   }
 
   render() {
