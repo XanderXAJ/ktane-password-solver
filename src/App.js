@@ -41,6 +41,7 @@ class PasswordColumnsInput extends Component {
       inputs.push(
         <PasswordColumnInput
           column={i+1}
+          key={i}
           onChange={this.handleColumnChange}
           value={columns[i]} />
       );
