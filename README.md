@@ -1,7 +1,7 @@
 Password Solver for Keep Talking and Nobody Explodes
 ----------------------------------------------------
 
-Try it now at: https://xanderxaj.github.io/ktane-password-solver
+Try it now at: <https://xanderxaj.github.io/ktane-password-solver>
 
 This small web application is designed to help you not explode when a password module comes up in [Keep Talking and Nobody Explodes][ktane].
 
@@ -18,3 +18,13 @@ This small web application is designed to help you not explode when a password m
 - Styling
 - Highlighting when there is only one word/no words
 - Ignore duplicate characters in individual column?
+
+# Development
+
+This project uses Mise to manage the Node version.
+
+To run it locally:
+
+```shell
+npm start
+```

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import './App.css';
 
 const PASSWORD_LENGTH = 5;
@@ -23,7 +23,7 @@ class PasswordColumnInput extends Component {
         <label>
           {this.props.name}:&nbsp;
           <input
-            ref={ (input) => { this.input = input; } }
+            ref={(input) => { this.input = input; }}
             type="text"
             value={this.props.value}
             onChange={this.handleChange}
@@ -70,7 +70,7 @@ class PasswordColumnsInput extends Component {
         this.columnComponents[this.wrapColumnIndex(index + 1)].focus();
         break;
       default:
-        // Do nothing
+      // Do nothing
     }
   }
 
@@ -84,7 +84,7 @@ class PasswordColumnsInput extends Component {
           index={i}
           key={i}
           name={'Column ' + (i + 1)}
-          ref={ (component) => { this.columnComponents[i] = component; } }
+          ref={(component) => { this.columnComponents[i] = component; }}
           onChange={this.handleColumnChange}
           onKeyDown={this.handleColumnKeyDown}
           value={columns[i]} />
@@ -103,13 +103,13 @@ class PasswordColumnsInput extends Component {
 
 function getPasswordColumnsRegexp(columns) {
   // Make empty columns match any character, filled-in columns match entered characters
-  const columnMatchers = columns.map( (column) => column.length > 0 ? '[' + column + ']' : '.' );
+  const columnMatchers = columns.map((column) => column.length > 0 ? '[' + column + ']' : '.');
   return new RegExp('^' + columnMatchers.join('') + '$');
 }
 
 function filterValidPasswords(columns, passwords) {
   const regexp = getPasswordColumnsRegexp(columns);
-  return PASSWORDS.filter( (password) => regexp.test(password) );
+  return PASSWORDS.filter((password) => regexp.test(password));
 }
 
 class ValidPasswordList extends Component {
@@ -137,11 +137,11 @@ class PasswordSolver extends Component {
     for (let i = 0; i < PASSWORD_LENGTH; i++) {
       columns.push('');
     }
-    this.state = {columns};
+    this.state = { columns };
   }
 
   handleChange = (columns) => {
-    this.setState({columns});
+    this.setState({ columns });
   }
 
   render() {
